@@ -15,11 +15,11 @@ Las siguientes preguntas están orientadas a la comprensión del protocolo HTTP.
 
 1. ¿Qué es un servidor HTTP? 
 
-A un servidor HTTP nos referimos a una tecnología (software o hardware) capaz de responder a peticiones bajo este protocolo. Comúnmente utilizado para brindar servicios web al cliente final (puede ser página, archivos, queries, etc.).
+Un servidor HTTP es una tecnología (software o hardware) capaz de responder a peticiones bajo este protocolo. Se utiliza comúnmente para brindar servicios web al cliente final, como páginas web, archivos, consultas (queries), entre otros.
 
 2. ¿Qué son los verbos HTTP? Mencionar los más conocidos
 
-Son acciones que se pueden realizar a una petición por medio de este protocolo. Se utilizan principalmente para realizar interacciones con el servicio proporcionado. Algunos ejemplos pueden ser mandar un formulario, cargar información a la página, entre otras. Las más populares son:
+Son acciones que se pueden realizar en una petición dentro de este protocolo. Se utilizan principalmente para realizar interacciones con el servicio proporcionado. Algunos ejemplos son enviar un formulario, cargar información en una página, entre otros. Los más populares son:
 
 - GET 
 - POST 
@@ -28,45 +28,54 @@ Son acciones que se pueden realizar a una petición por medio de este protocolo.
 
 3. ¿Qué es un request y un response en una comunicación HTTP? 
 
-Request y response son los tipos de operaciones más comunes cuando se intenta comunicar usuario/servidor para un servicio web. 
+Request y response son las operaciones más comunes en la comunicación entre usuario y servidor dentro de un servicio web.
 
-Request - También conocido como solicitud, es la petición que envía el cliente o usuario a un servidor HTTP para realizar cierta consulta. Está compuesta por el tipo de petición (Puede ser cualquier verbo mencionado anteriormente). La dirección URL a la cual se está requiriendo solicitar. 
+Request (solicitud): Es la petición que envía el cliente o usuario a un servidor HTTP para realizar una consulta. Está compuesta por el tipo de petición (puede ser cualquier verbo mencionado anteriormente) y la URL a la que se está haciendo la solicitud. 
 
-Response (respuesta) - Como su nombre lo sugiere, es la respuesta que ofrece el servidor a la petición solicitada por el usuario. Estas primordialmente vienen con un código de respuesta que hace referencia al estado de devolución de la petición. Los códigos son clasificados de la siguiente manera:
+Response (respuesta): Es la respuesta que ofrece el servidor a la solicitud del usuario. Generalmente, incluye un código de estado que indica el resultado de la petición. Estos códigos se clasifican en las siguientes categorías:
 
-- 100 - son indicativos de respuestas informativas o de espera de interacción.
-- 200 - principalmente a respuestas exitosas del servidor.
-- 300 - Redirecciones de URL, puede suceder cuando el dominio o la dirección ha cambiado y se envía la solicitud a nuevos dominios.
-- 400 - Errores del usuario, puede referirse a peticiones que son inexistentes, prohibidas o erróneas por parte del usuario
-- 500 - Errores del servidor, inestabilidad o fallas por parte del servidor para solucionar cierta petición.
+- 100 → Respuestas informativas.
+- 200 → Respuestas exitosas.
+- 300 → Redirecciones.
+- 400 → Errores del cliente.
+- 500 → Errores del servidor.
+
+Se explicarán más a detalle en el la pregunta 5
 
  ¿Qué son los headers? 
 
-Es información relevante que se envía con la petición (request y response) que brinda apoyo para la comunicación entre cliente y servidor. Estas normalmente son enviadas por medio de key-value pair  donde se establecen formatos de datos, tipo de accesos, autenticación, entre otras.
+Son información adicional que se envía con una petición (request y response) y facilitan la comunicación entre el cliente y el servidor. Generalmente, los headers se envían como pares clave-valor, donde se establecen aspectos como formatos de datos, autenticación, permisos de acceso, entre otros.
 
 4. ¿Qué es un queryString? (En el contexto de una url)
 
-Son parámetros que vienen agregados a la URL generada, igual que los headers, se manejan por pares de llave con valor. Su función principalmente es envíar información extra a la petición y es indicado después del símbolo de interrogación (?).  un ejemplo sería:
+Es un conjunto de parámetros agregados a la URL que, al igual que los headers, se manejan como pares clave-valor. Su función principal es enviar información extra en la petición y se indica después del símbolo de interrogación (?).
 
 	https://www.test-procontacto.com.mx/query?usuario=admin&index=1239
 
-Donde usuario=admin o index=1239 son consideraras query string dentro de un endpoint de URL.
+Aquí, `usuario=admin` e `index=1239` son parámetros del query string dentro del endpoint de la URL.
 
 5. ¿Qué es el responseCode? ¿Qué significado tiene los posibles valores devueltos?
 
-Los códigos son clasificados de la siguiente manera:
+Los códigos de respuesta HTTP se clasifican de la siguiente manera:
 
-- 100 - son indicativos de respuestas informativas o de espera de interacción.
-- 200 - principalmente a respuestas exitosas del servidor.
-- 300 - Redirecciones de URL, puede suceder cuando el dominio o la dirección ha cambiado y se envía la solicitud a nuevos dominios.
-- 400 - Errores del usuario, puede referirse a peticiones que son inexistentes, prohibidas o erróneas por parte del usuario
-- 500 - Errores del servidor, inestabilidad o fallas por parte del servidor para solucionar cierta petición.
+- 100 → Respuestas informativas o de espera de interacción.
+
+- 200 → Respuestas exitosas del servidor.
+
+- 300 → Redirecciones de URL (cuando el dominio o la dirección ha cambiado).
+
+- 400 → Errores del usuario (peticiones inexistentes, prohibidas o incorrectas).
+
+- 500 → Errores del servidor (fallas internas al procesar la petición).
+
+
 
 6. ¿Cómo se envía la data en un Get y cómo en un POST? 
 
-Para enviar datos de un GET, es posible enviarlos por medio de clave valor por medio de un queryString. Estos valores pueden ser inputs integrados dentro de una página o aplicación cuyo objetivo es la obtención de una respuesta que requieran ciertas entradas del usuario.
+GET: Los datos se envían a través de query strings en la URL como pares clave-valor. Estos valores pueden provenir de inputs en una página o aplicación que requiera datos del usuario para obtener una respuesta.
 
-Para una respuesta POST, se manejan principalmente en formatos JSON (JavaScript Object Notation). EL cual es un formato popular en el desarrollo web. Se maneja de igual manera el formato clave valor como respuesta de una petición al servidor, un ejemplo sería:
+
+POST: Los datos se envían generalmente en formato JSON (JavaScript Object Notation) en el cuerpo de la petición. Un ejemplo de datos en JSON sería:
 
 ```json
 {
@@ -78,15 +87,17 @@ Para una respuesta POST, se manejan principalmente en formatos JSON (JavaScript 
 
 7. ¿Qué verbo http utiliza el navegador cuando accedemos a una página?
 
-El verbo que principalmente se utiliza es GET. Esto debido a la consulta que se envía desde el usuario (acceder a una URL). y la respuesta de dicha petición contiene el HTML, CSS, lógica de JavaScript, Imágenes, etc. que el motor de búsqueda renderiza y muestra al usuario que realiza dicha petición.
+El navegador utiliza principalmente GET, ya que al acceder a una URL se está realizando una consulta al servidor.
 
-Es importante mencionar que para ciertas tecnologías, es igualmente utilizado como “endpoint” para hacer consultas a una base de datos. (Comúnmente utilizado en tecnologías como Express, para facilitar la consulta y respuesta de información entre usuario y servidor). 
+La respuesta a esta petición incluye el HTML, CSS, JavaScript, imágenes, etc., que el navegador renderiza y muestra al usuario.
+
+Es importante mencionar que en ciertas tecnologías GET también se usa para hacer consultas a bases de datos (por ejemplo, en frameworks como Express.js, facilitando la interacción entre cliente y servidor).
 
 8. Explicar brevemente qué son las estructuras de datos JSON y XML dando ejemplo de estructuras posibles.
 
-Ambas estructuras son utilizadas para el transporte de la información para servicios webs o consultas a ciertas API’s
+Ambas estructuras se utilizan para el transporte de datos en servicios web o consultas a APIs.
 
-JSON (JavaScript Object Notation) - Es el formato más común utilizado, se basa en el transporte de información estilo key-value y son funcionales debido a la variedad de tipos de datos manejables (Strings, Integers, Objetos, Arrays, etc.). Su lectura es más fácil de entender para el humano a diferencia del XML, un ejemplo sería:
+JSON (JavaScript Object Notation): Es el formato más común. Su sintaxis se basa en pares clave-valor y es fácil de leer. Admite varios tipos de datos (cadenas, números, objetos, arreglos, etc.).
 
 ```json
 {
@@ -97,7 +108,7 @@ JSON (JavaScript Object Notation) - Es el formato más común utilizado, se basa
 }
 ```
 
-XML (eXtensible Markup Language) - funciona por medio de etiquetas (similar a HTML) para su representación de datos. Es más complicado para leer, sin embargo, maneja más estructurada la información. A diferencia del JSON que se maneja más para estándares REST, XML es más popular para esquemas de estilo SOAP, un ejemplo sería:
+XML (eXtensible Markup Language): Utiliza etiquetas para estructurar los datos, similar a HTML. Es más difícil de leer, pero ofrece una organización más estricta. Se usa más en SOAP, mientras que JSON es preferido en REST.
 
 ```xml
 <usuario>
@@ -115,19 +126,24 @@ XML (eXtensible Markup Language) - funciona por medio de etiquetas (similar a HT
 
 9. Explicar brevemente el estándar SOAP
 
-SOAP (Simple Object Access Protocol) es un protocolo o estándar utilizado principalmente con XML, su principal funcionalidad es para la interacción de datos entre sistemas. Es considerado una especie de pautas para la estructura de los mensajes y la interacción entre servicios web (es funcional con el protocolo HTTP).
+SOAP (Simple Object Access Protocol) es un protocolo utilizado principalmente con XML. Su propósito es permitir la comunicación estructurada entre sistemas, definiendo pautas para la estructura de los mensajes y la interacción entre servicios web. SOAP es funcional con HTTP y otros protocolos.
+
  
 10. Explicar brevemente el estándar REST Full
 
-RESTFul (Representational State Transfer) - Es un estándar arquitectónico que está bastante adaptado a los protocolos como HTTP (HTTPS). Aprovecha el formato de verbos para la comunicación entre sistemas y se puede utilizar varias estructuras de datos (XML, JSON, etc.). Es importante destacar que JSON es el más común bajo esta estructura. Su compatibilidad es clave para ser una de las API 's más utilizadas en la actualidad.
+RESTFul (Representational State Transfer) es un estándar arquitectónico ampliamente utilizado con HTTP/HTTPS. Se basa en el uso de verbos HTTP para la comunicación entre sistemas y puede manejar varios formatos de datos (JSON, XML, etc.), aunque JSON es el más común.
+
+REST es clave en la mayoría de las APIs modernas debido a su simplicidad y compatibilidad con múltiples tecnologías.
 
 11. ¿Qué son los headers en un request? ¿Para qué se utiliza el key Content-type en un header?
 
-Los headers son datos extra que se proporcionan sobre una petición HTTP (GET, POST, etc.). Su principal función es definir aspectos importantes a dicha petición como el formato de datos, respuestas de autentificación, configuraciones, etc.  
+Los headers son datos adicionales enviados en una petición HTTP (GET, POST, etc.). Su función principal es definir aspectos clave de la comunicación, como el formato de datos, autenticación, permisos, etc.
 
-El Content-type header es marcador del formato de contenido que se envía en el cuerpo de la petición, un ejemplo sería:
+El header `Content-Type` indica el formato del contenido enviado en el cuerpo de la petición.
 
 `Content-Type: application/json`
+
+Esto indica que el servidor debe esperar un contenido en formato JSON.
 
 ## EJERCICIO 3
 
