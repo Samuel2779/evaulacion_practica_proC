@@ -443,7 +443,7 @@ Contact testContact = new Contact(
     FirstName = 'Samuel',
     LastName = 'Cueto',
     Email = 'oldemailshouldnotwrite@example.com',  // This email should not show, rather update with endpoint email
-    idprocontacto__c = '-OMSumA1l3_nja1Cpti0' 
+    idprocontacto__c = 'xxxxxxxx' // changing it to my ID
 );
 insert testContact;
 ```
