@@ -1,0 +1,7 @@
+/*
+    Handler to avoid recursive calls between triggers
+
+*/
+public class TriggerHandler {
+    public static Boolean isExecuting = false;
+}

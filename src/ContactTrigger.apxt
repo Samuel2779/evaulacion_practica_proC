@@ -1,0 +1,24 @@
+/*
+    Trigger handler for everytime a Contact is created or updated.
+*/
+
+trigger ContactTrigger on Contact (after insert, after update) {
+    Set<Id> contactIds = new Set<Id>();
+
+    if (TriggerHandler.isExecuting) {
+        return;
+    }
+    TriggerHandler.isExecuting = true;
+
+    for (Contact con : Trigger.new) {
+        if (con.idprocontacto__c != null) {
+            contactIds.add(con.Id);
+        }
+    }
+
+    if (!contactIds.isEmpty()) {
+        System.enqueueJob(new ContactWebService(contactIds));
+    }
+
+    TriggerHandler.isExecuting = false;
+}

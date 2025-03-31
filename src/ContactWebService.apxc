@@ -1,0 +1,50 @@
+/*
+    Web service class that handles email update petition when trigger is called.
+
+    Parameters:
+        contactIds: Set of Ids to review for update (idprocontacto value was filled). 
+
+    Return:
+        Void: if condition is met and HTTP response returns a JSON value, update will be performed
+*/
+public class ContactWebService implements Queueable, Database.AllowsCallouts {
+    private Set<Id> contactIds;
+
+    public ContactWebService(Set<Id> contactIds) {
+        this.contactIds = contactIds;
+    }
+
+    public void execute(QueueableContext context) {
+        List<Contact> contactsToUpdate = new List<Contact>();
+
+        for (Id contactId : contactIds) {
+            Contact con = [SELECT Id, idprocontacto__c FROM Contact WHERE Id = :contactId LIMIT 1];
+
+            if (con.idprocontacto__c == null) {
+                continue;
+            }
+
+            String url = 'https://procontacto-reclutamiento-default-rtdb.firebaseio.com/contacts/' + con.idprocontacto__c + '.json';
+
+            Http http = new Http();
+            HttpRequest request = new HttpRequest();
+            request.setEndpoint(url);
+            request.setMethod('GET');
+
+            HttpResponse response = http.send(request);
+
+            if (response.getStatusCode() == 200) {
+                Map<String, Object> jsonResponse = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+                
+                if (jsonResponse.containsKey('email')) {
+                    con.Email = (String) jsonResponse.get('email');
+                    contactsToUpdate.add(con);
+                }
+            }
+        }
+
+        if (!contactsToUpdate.isEmpty()) {
+            update contactsToUpdate;
+        }
+    }
+}
